@@ -1,0 +1,44 @@
+.input-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 20px auto;
+}
+.input-button{
+    background: rgb(119, 119, 197);
+    padding: 15px;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px black;
+    cursor: pointer;
+    min-width: 40px;
+}
+.runBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.run{
+    background: rgb(119, 119, 197);
+    padding: 15px;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px black;
+    cursor: pointer;
+    border: none;
+}
+.previewImg{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+
+}
+.input-button:hover{
+    opacity: 0.8;
+}.run:hover{
+    opacity: 0.8;
+;
+}
