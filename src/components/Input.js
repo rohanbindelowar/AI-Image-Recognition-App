@@ -1,10 +1,8 @@
 import React from "react";
+import axios from "axios";
 import "../styles/Input.css";
 
 export const Input = () => {
-  const handleClick = (e) => {
-    
-  };
   const handleChange = (e) => {
     if (e.target.value === "") return;
 
@@ -14,12 +12,35 @@ export const Input = () => {
     if (file) {
       reader.readAsDataURL(file);
     }
-    reader.onload=function(){
+    reader.onload = function () {
       const preview = document.getElementById("previewImg");
       preview.src = reader.result;
       document.getElementById("run").style.display = "block";
-      
     };
+  };
+
+  const handleClick = () => {
+    document.getElementById("run").innerHTML = "Running...";
+
+    var config = {
+      method: "post",
+      url: "http://localhost:4001/upload",
+      data: {
+        image_base64: document.getElementById("previewImg").src,
+      },
+    };
+    axios(config).then((response) => {
+      const tagsData = [];
+      for (var i = 0; i < response.data.result.tags.length; i++) {
+        if (response.data.result.tags[i].confidence > 0.8) {
+          tagsData.push(response.data.result.tags[i]);
+        }
+      }
+      this.props.setTags(tagsData);
+      document.getElementById("run").style.display = "none";
+    }).catch((error) => {
+        console.log(error);
+    });
   };
   return (
     <div className="">
